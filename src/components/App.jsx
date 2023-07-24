@@ -5,8 +5,7 @@ import { LoadMoreButton } from "./LoadMoreBtn/LoadMoreBtn";
 import { Loader } from "./Loader/Loader";
 import { getImagesBySearch } from "./Api/Images";
 import Modal from "./Modal/Modal";
-import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
-import { ThemeConsumer } from "styled-components";
+
 
 
 class App extends Component {
