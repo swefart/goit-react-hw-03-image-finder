@@ -1,8 +1,6 @@
 import { SearchForm, Header, SearchFormButton, ButtonLabel, SearchInput } from "./Searchbar.styled";
 
-export const Searchbar = ({ onSubmit }) => {
-    
-
+export const Searchbar = ({ onSubmit, handleChange, searchValue }) => {
         return (
             <Header>
                 <SearchForm onSubmit={onSubmit}>
@@ -11,7 +9,7 @@ export const Searchbar = ({ onSubmit }) => {
                             {"Search"}
                         </ButtonLabel>
                     </SearchFormButton>
-                     <SearchInput placeholder="Search images"/>
+                    <SearchInput placeholder="Search images" onChange={handleChange} value={searchValue } />
                 </SearchForm>
             </Header>
         )

@@ -17,6 +17,7 @@ class App extends Component {
     isLoading: false,
     isShowModal: false,
     url: '',
+    searchChange: '',
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -39,11 +40,10 @@ class App extends Component {
   onSubmitForm = (e) => {
     e.preventDefault()
     const prevValue = this.state.searchValue;
-    let currentValue = e.target.elements[1].value;
-    if (prevValue !== currentValue && currentValue.trim()) {
-   this.setState({ searchValue: currentValue, page: 1, images: [] }) 
+    if (prevValue !== this.state.searchChange && this.state.searchChange.trim()) {
+   this.setState({ searchValue: this.state.searchChange, page: 1, images: [] }) 
     }
-    e.target.elements[1].value = '';
+   
   }
 
   onClickLoadMore = () => {
@@ -58,15 +58,17 @@ class App extends Component {
     this.setState(({ isShowModal }) => { return { url: props, isShowModal: !isShowModal } })
   }
 
+  handleChange = (e) => {
+    console.log(e.target.value)
+    this.setState({searchChange: e.target.value})
+  }
 
   render() {
     const { images } = this.state;
-    console.log(this.state.url)
-    console.log()
     return (
       
         <div>
-        <Searchbar onSubmit={this.onSubmitForm}></Searchbar>
+        <Searchbar onSubmit={this.onSubmitForm} handleChange={this.handleChange} searchValue={this.searchValue}></Searchbar>
        {this.state.isLoading && <Loader/>}
         <ImageGallery img={images} onClick={this.onGalleryClick } />
         {this.state.showBtn && <LoadMoreButton onClick={this.onClickLoadMore} />}
