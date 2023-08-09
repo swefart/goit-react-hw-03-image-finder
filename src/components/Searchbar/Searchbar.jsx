@@ -7,6 +7,16 @@ class Searchbar extends Component {
         searchChange: ''
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        if (!this.searchChange.trim()) {
+            alert("Please fill the field")
+            return
+        }
+        this.props.onSubmit(this.state.searchChange.trim())
+    }
+
+
     handleChange = (e) => {
               this.setState({searchChange: e.target.value})
         }
@@ -14,7 +24,7 @@ class Searchbar extends Component {
     render(){
         return (
             <Header>
-                <SearchForm onSubmit={this.props.onSubmit}>
+                <SearchForm onSubmit={this.handleSubmit}>
                     <SearchFormButton>
                         <ButtonLabel>
                             {"Search"}

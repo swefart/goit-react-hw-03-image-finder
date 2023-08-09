@@ -37,16 +37,10 @@ class App extends Component {
   }
 
 
-  onSubmitForm = (e) => {
-    e.preventDefault()
+  onSubmitForm = (currentValue) => {
     const prevValue = this.state.searchValue;
-    let currentValue = e.target.elements[1].value;
-    console.log(e.target.elements[1].value)
     if (prevValue !== currentValue && currentValue.trim()) {
       this.setState({ searchValue: currentValue, page: 1, images: [] })
-      if (prevValue !== this.state.searchValue && this.state.searchValue.trim()) {
-        this.setState({ searchValue: this.state.searchValue, page: 1, images: [] })
-      }
     }
   }
 
